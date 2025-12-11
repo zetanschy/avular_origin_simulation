@@ -19,11 +19,15 @@ from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
-    set_world_file_name = SetLaunchConfiguration(
-        "world_file_name", "TY_test_area.world"
+    # Declare world argument
+    world_arg = DeclareLaunchArgument(
+        "world",
+        default_value="TY_test_area.world",
+        description="World file name"
     )
-    robot_pose_x = SetLaunchConfiguration("robot_pose_x", "-18.75")
-    robot_pose_y = SetLaunchConfiguration("robot_pose_y", "-34.8")
+    
+    robot_pose_x = SetLaunchConfiguration("robot_pose_x", "0.0")
+    robot_pose_y = SetLaunchConfiguration("robot_pose_y", "15.0")
     robot_pose_yaw = SetLaunchConfiguration("robot_pose_yaw", "1.57")
 
     drive_configuration = DeclareLaunchArgument(
@@ -42,13 +46,17 @@ def generate_launch_description():
             ]
         ),
         launch_arguments={
-            "drive_configuration": LaunchConfiguration("drive_configuration")
+            "world": LaunchConfiguration("world"),
+            "drive_configuration": LaunchConfiguration("drive_configuration"),
+            "robot_pose_x": LaunchConfiguration("robot_pose_x"),
+            "robot_pose_y": LaunchConfiguration("robot_pose_y"),
+            "robot_pose_yaw": LaunchConfiguration("robot_pose_yaw"),
         }.items(),
     )
 
     return LaunchDescription(
         [
-            set_world_file_name,
+            world_arg,
             robot_pose_x,
             robot_pose_y,
             robot_pose_yaw,

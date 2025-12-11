@@ -89,6 +89,7 @@ def generate_launch_description():
 
     ld.add_action(OpaqueFunction(function=create_urdf_description))
     
+    # Spawn robot - the -r flag in gz_args resets the world, ensuring clean state
     ld.add_action(
         Node(
             package="ros_gz_sim",
