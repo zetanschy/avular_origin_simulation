@@ -22,8 +22,8 @@ def generate_launch_description():
     set_world_file_name = SetLaunchConfiguration(
         "world_file_name", "TY_test_area.world"
     )
-    robot_pose_x = SetLaunchConfiguration("robot_pose_x", "-18.75")
-    robot_pose_y = SetLaunchConfiguration("robot_pose_y", "-34.8")
+    robot_pose_x = SetLaunchConfiguration("robot_pose_x", "-2.0")
+    robot_pose_y = SetLaunchConfiguration("robot_pose_y", "0.0")
     robot_pose_yaw = SetLaunchConfiguration("robot_pose_yaw", "1.57")
 
     drive_configuration = DeclareLaunchArgument(

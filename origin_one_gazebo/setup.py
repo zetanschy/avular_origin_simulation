@@ -45,6 +45,8 @@ setup(
     entry_points={
         "console_scripts": [
             "robot_specifics = origin_one_gazebo.origin_specifics:main",
+            "go_to_goal = origin_one_gazebo.go_to_goal:main",
+            "waypoint_follower = origin_one_gazebo.waypoint_follower:main",
         ],
     },
 )
