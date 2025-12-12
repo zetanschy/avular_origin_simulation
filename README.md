@@ -54,6 +54,59 @@ Alternatively, the simulation can also be launched with the mecanum wheel config
 ```
 ros2 launch origin_one_gazebo ty_test_area.launch.py use_cmd_vel_controller:=True drive_configuration:=mecanum_drive
 ```
+
+## Selecting Different Worlds
+
+The simulation package includes multiple world files that you can use. By default, the simulation launches with `empty_world.world` (a simple empty world with just a ground plane, ideal for testing odometry and EKF without obstacles).
+
+### Available Worlds
+
+- **`empty_world.world`** (default): An empty world with a ground plane - perfect for testing pure odometry, EKF, and basic navigation without obstacles
+- **`TY_test_area.world`**: A test area with obstacles, structures, and various objects for more complex navigation scenarios
+
+### How to Select a World
+
+You can select a different world using the `world` parameter when launching the simulation:
+
+**Using the common launch file:**
+```
+# Launch with empty world (default)
+ros2 launch origin_one_gazebo origin_sim_common.launch.py
+
+# Launch with TY_test_area world
+ros2 launch origin_one_gazebo origin_sim_common.launch.py world:=TY_test_area.world
+
+# Launch with custom parameters
+ros2 launch origin_one_gazebo origin_sim_common.launch.py \
+    world:=TY_test_area.world \
+    drive_configuration:=mecanum_drive \
+    use_cmd_vel_controller:=True
+```
+
+**Using the TY_test_area launch file (always uses TY_test_area.world):**
+```
+ros2 launch origin_one_gazebo ty_test_area.launch.py use_cmd_vel_controller:=True
+```
+
+**Note:** The `ty_test_area.launch.py` file is specifically configured to use the TY_test_area world. If you want to use a different world, use `origin_sim_common.launch.py` with the `world` parameter instead.
+
+### Why Two Launch Files?
+
+There are two launch files for different purposes:
+
+1. **`origin_sim_common.launch.py`** (Base launch file):
+   - Generic and flexible launch file that accepts all parameters
+   - Allows you to configure everything: world, robot pose, drive configuration, etc.
+   - Use this when you want full control over the simulation parameters
+
+2. **`ty_test_area.launch.py`** (Convenience wrapper):
+   - Pre-configured launch file specifically for the TY_test_area world
+   - Sets optimal robot starting position for that world (x=-2.0, y=0.0, yaw=1.57)
+   - Automatically uses TY_test_area.world
+   - Use this as a quick shortcut when you want to launch the TY_test_area scenario
+
+**In summary:** `ty_test_area.launch.py` is a convenience wrapper that calls `origin_sim_common.launch.py` with pre-configured values optimized for the TY_test_area world. For maximum flexibility, use `origin_sim_common.launch.py` directly.
+
 This will show the avular simulation environment in Gazebo Fortress, with the Origin One spawned.
 You can now drag to mouse to change the view to the robot model.
 If you want to launch the simulation without sourcing each time, you can source the setup file in your bashrc:

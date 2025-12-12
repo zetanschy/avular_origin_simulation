@@ -30,7 +30,7 @@ def generate_launch_description():
 
     ld.add_action(DeclareLaunchArgument("headless", default_value="false"))
     ld.add_action(DeclareLaunchArgument("spawn", default_value="true"))
-    ld.add_action(DeclareLaunchArgument("world", default_value="TY_test_area.world"))
+    ld.add_action(DeclareLaunchArgument("world", default_value="empty_world.world"))
     ld.add_action(DeclareLaunchArgument("drive_configuration", default_value="skid_steer_drive"))
     ld.add_action(
         DeclareLaunchArgument(
