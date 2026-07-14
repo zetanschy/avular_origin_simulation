@@ -22,7 +22,7 @@ git clone -b origin_1.0/1 https://github.com/zetanschy/avular_origin_simulation.
 
 In the same `src` folder, we also need to clone the `avular_origin_description` repository, which contains the URDF and meshes for the Origin One robot:
 ```
-git clone https://github.com/avular-robotics/avular_origin_description.git
+git clone https://github.com/zetanschy/avular_origin_description.git
 cd avular_origin_description
 git lfs pull
 ```
